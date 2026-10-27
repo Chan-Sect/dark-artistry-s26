@@ -5,7 +5,7 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "dev": "nodemon --watch main --ext ts --exec tsx main/www.ts",
+    "dev": "nodemon --ext ts --exec tsx --ignore public ./main/www.ts",
     "build": "tsc",
     "start": "node dist/www.js"
   },
