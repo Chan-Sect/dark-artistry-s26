@@ -1,4 +1,4 @@
-import {collection as collections} from "./connect";
+import {collection as collections} from "./connect.js";
 
 // const normalize = (field: string) =>
 // {

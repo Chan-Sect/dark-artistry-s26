@@ -7,13 +7,13 @@
 import app from './app.js'
 import debug from 'debug'
 import http from 'http'
-import URL from '../config/connections/URI/server'
+import URL from '../config/connections/URI/server.js'
 import colors from 'colors'
 
 /**
  * Kết nối Database
  */
-import connect from '../database/main/connect'
+import connect from '../database/main/connect.js'
 
 debug('server:server')
 

@@ -1,4 +1,4 @@
-import Database, {DatabaseType} from '../main'
+import Database, {DatabaseType} from '../main/index.js'
 
 export interface UserType extends DatabaseType
 {

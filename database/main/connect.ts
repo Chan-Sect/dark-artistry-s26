@@ -1,7 +1,7 @@
 import {Document, MongoClient, ServerApiVersion} from 'mongodb'
-import URL from '../../config/connections/URI/database'
-import {Error, Success} from '../../config/connections/response'
-import Response from "../../config/connections/response/type";
+import URL from '../../config/connections/URI/database.js'
+import {Error, Success} from '../../config/connections/response/index.js'
+import Response from "../../config/connections/response/type.js";
 
 const name = 'cdsg'
 

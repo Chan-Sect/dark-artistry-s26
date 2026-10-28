@@ -7,7 +7,7 @@
   "scripts": {
     "dev": "nodemon --ext ts --exec tsx --ignore public ./main/www.ts",
     "build": "tsc",
-    "start": "node dist/www.js"
+    "start": "node dist/main/www.js"
   },
   "keywords": [],
   "author": "Công Tử Hào Hoa",

@@ -1,4 +1,4 @@
-import Response, { Errors } from "./type";
+import Response, { Errors } from "./type.js";
 import colors from "colors";
 
 // type MethodType = 'get' | 'post' | 'put' | 'patch' | 'delete'

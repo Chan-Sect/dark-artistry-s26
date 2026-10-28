@@ -1,6 +1,6 @@
-import admin from './admin'
-import client from './client'
-import server from './server'
+import admin from './admin.js'
+import client from './client.js'
+import server from './server.js'
 
 export interface URIType
 {
