@@ -6,6 +6,7 @@ import {Error} from '../config/connections/response'
 import URI from '../config/connections/URI'
 import cors from 'cors'
 import session from 'express-session'
+import indexRouter from '../routes/index'
 import usersRouter from '../routes/users'
 import countRouter from '../routes/count'
 import multer from 'multer'
@@ -16,7 +17,7 @@ const app = express()
 
 // view engine setup
 app.set('views', path.join(process.cwd(), 'views'))
-app.set('view engine', 'pug')
+app.set('view engine', 'ejs')
 
 const print: RequestHandler = (req, res, next) =>
 {
@@ -55,6 +56,7 @@ app.use(session({ secret: 'Dark Artistry', resave: false, saveUninitialized: tru
 app.use(multer().any())
 app.use(convert)
 
+app.use('/', indexRouter)
 app.use('/users', usersRouter)
 app.use('/count', countRouter)
 
@@ -63,13 +65,14 @@ const onNotFound: RequestHandler = (req, _, next) =>
     next(Error.PageNotFound(req.method, req.url))
 }
 
-const onError: ErrorRequestHandler = (err, req, res) =>
+const onError: ErrorRequestHandler = (err, req, res, _) =>
 {
-    res.status(err.code || 500)
+    const { message, code, error } = err.toJSON()
+    res.status(code || 500)
 
-    if (req.accepts('html')) res.render('error', { status: err.status, message: err.message, stack: err.stack })
-    else if (req.accepts('json')) res.json(err)
-    else res.send(`${ err.code } - ${ err.message }`)
+    if (req.accepts('html')) res.render('error', { message, code, stack: err.stack })
+    else if (req.accepts('json')) res.json({ message, code, error })
+    else res.send(`${ code } - ${ message }`)
 }
 
 app.use(express.static(path.join(process.cwd(), 'public')))

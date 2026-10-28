@@ -3,6 +3,8 @@ const router = express.Router()
 import User from '../database/collections/users'
 import middleware from '../middlewares/users'
 import {DataHandler} from "../middlewares";
+import Access from '../config/permission/access'
+import Require from "../config/permission/require"
 
 const ALL: RequestHandler = async (_, res) =>
 {
@@ -33,9 +35,9 @@ const DELETE: DataHandler<User> = async (_, res) =>
 }
 
 
-router.get('/',ALL)
+router.get('/', ALL)
 router.get('/:id', ...middleware.ONE, ONE)
-router.post('/', POST)
-router.delete('/:id', ...middleware.DELETE, DELETE)
+router.post('/', ...Access.AccountStudent.check(Require.Insertable), POST)
+router.delete('/:id', ...Access.AccountStudent.check(Require.FullAccess), ...middleware.DELETE, DELETE)
 
 export default router

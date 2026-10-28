@@ -1,5 +1,3 @@
-// const Type = require('./type')
-// const { Errors } = require('./type')
 import Response, { Errors } from "./type";
 import colors from "colors";
 

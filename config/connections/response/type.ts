@@ -1,19 +1,18 @@
-export interface ResponseType
-{
-    message: string
-    code: number
-    error: boolean
-}
+// export interface ResponseType
+// {
+//     message: string
+//     code: number
+//     error: boolean
+// }
 
-class Response
+class Response extends Error
 {
-    public readonly message: string;
     public readonly code: number
     public readonly error: boolean
 
     public constructor(message: string, code = 500)
     {
-        this.message = message
+        super(message)
         this.code = code
         this.error = code !== 200
     }
@@ -23,7 +22,7 @@ class Response
 
 
 
-export class Errors extends Error
+export class Errors extends Response
 {
     /**
      * @param message { string }
