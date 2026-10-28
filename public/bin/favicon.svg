@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 300 300">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: url(#linear-gradient);
+      }
+
+      .cls-1, .cls-2, .cls-3, .cls-4, .cls-5, .cls-6 {
+        stroke-width: 0px;
+      }
+
+      .cls-2 {
+        fill: url(#radial-gradient);
+      }
+
+      .cls-3 {
+        fill: #6d6e70;
+      }
+
+      .cls-4 {
+        fill: url(#linear-gradient-2);
+      }
+
+      .cls-5 {
+        fill: url(#linear-gradient-3);
+      }
+
+      .cls-6 {
+        fill: #bbbdbf;
+      }
+    </style>
+    <linearGradient id="linear-gradient" x1="0" y1="201.99" x2="300" y2="201.99" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#5e19bf"/>
+      <stop offset="1" stop-color="#421066"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-2" x1="26.27" y1="182.92" x2="273.73" y2="182.92" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#fff"/>
+      <stop offset="1" stop-color="#a6a8ab"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-3" x1="50" y1="100" x2="250" y2="100" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#f74b7c"/>
+      <stop offset="1" stop-color="#771531"/>
+    </linearGradient>
+    <radialGradient id="radial-gradient" cx="150" cy="100" fx="150" fy="100" r="70" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#f74b7c"/>
+      <stop offset="1" stop-color="#771531"/>
+    </radialGradient>
+  </defs>
+  <g id="Layer_2-2" data-name="Layer 2">
+    <g>
+      <path class="cls-1" d="M299.97,107.2c-.07-.71-1.36-3.14-5.14-3.22-3.79-.07-5.85,1.82-5.85,1.82l-138.98,7.24-138.98-7.24s-2.06-1.89-5.85-1.82c-3.79.07-5.07,2.5-5.14,3.22-.06.6-.02,132.28,0,172.7,0,6.45,5.23,11.67,11.67,11.67h118.03s5.27,7.57,19.74,8.37v.07c.18,0,.35-.03.53-.03.18,0,.34.03.53.03v-.07c14.46-.8,19.74-8.37,19.74-8.37h118.03c6.45,0,11.67-5.22,11.67-11.67.01-40.43.06-172.1,0-172.7Z"/>
+      <polygon class="cls-6" points="273.73 97.87 150 106.6 26.27 97.87 11.02 105.8 11.02 280.42 149.47 280.42 150.53 280.42 288.98 280.42 288.98 105.8 273.73 97.87"/>
+      <path class="cls-3" d="M150,280.3c-135.26-30.71-138.98.12-138.98.12h277.95s-3.71-30.83-138.98-.12Z"/>
+      <path class="cls-4" d="M150,106.34c-5.17-2.86-48.4-25.26-123.73-20.17v163.34s68.62-2.47,123.2,30.28v.63c.18-.11.35-.21.53-.32.18.11.35.21.53.32v-.63c54.58-32.75,123.2-30.28,123.2-30.28V86.17c-75.32-5.09-118.55,17.31-123.73,20.17Z"/>
+      <circle class="cls-5" cx="150" cy="100" r="100"/>
+      <circle class="cls-2" cx="150" cy="100" r="70"/>
+    </g>
+  </g>
+</svg>
