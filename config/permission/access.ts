@@ -1,7 +1,7 @@
-import Require from './require.js'
+import Require from './require'
 import { RequestHandler, Request as RequestType, Response as ResponseType } from "express"
-import { Error } from "../connections/response/index.js";
-import {DataHandler, Get} from "../../middlewares/index.js";
+import { Error } from "../connections/response";
+import {DataHandler, Get} from "../../middlewares";
 
 interface AccessPermission
 {

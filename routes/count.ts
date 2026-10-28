@@ -1,6 +1,6 @@
 import express, {RequestHandler} from 'express'
-import User from '../database/collections/users.js'
-import Database, { DatabaseClass } from "../database/main/index.js";
+import User from '../database/collections/users'
+import Database, { DatabaseClass } from "../database/main";
 
 const router = express.Router()
 

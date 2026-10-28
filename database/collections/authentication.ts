@@ -1,4 +1,4 @@
-import Database, { DatabaseType } from '../main/index.js'
+import Database, { DatabaseType } from '../main'
 
 export interface AuthenticationType extends DatabaseType
 {

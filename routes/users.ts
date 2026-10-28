@@ -1,9 +1,9 @@
 import express, {RequestHandler} from 'express'
-import User from '../database/collections/users.js'
-import middleware from '../middlewares/users.js'
-import {DataHandler} from "../middlewares/index.js";
-import Access from '../config/permission/access.js'
-import Require from "../config/permission/require.js"
+import User from '../database/collections/users'
+import middleware from '../middlewares/users'
+import {DataHandler} from "../middlewares";
+import Access from '../config/permission/access'
+import Require from "../config/permission/require"
 
 const router = express.Router()
 

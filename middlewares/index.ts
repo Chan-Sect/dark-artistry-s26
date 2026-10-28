@@ -1,8 +1,8 @@
 import {RequestHandler, Request } from "express"
-import {Error} from "../config/connections/response/index.js"
-import Database, {DatabaseClass} from "../database/main/index.js"
-import Authentication from '../database/collections/authentication.js'
-import User from '../database/collections/users.js'
+import {Error} from "../config/connections/response"
+import Database, {DatabaseClass} from "../database/main/index"
+import Authentication from '../database/collections/authentication'
+import User from '../database/collections/users'
 
 type FetchCookiesType = (request: Request) => Promise<Authentication | undefined>
 type FindType = (id: string) => Promise<User | undefined>

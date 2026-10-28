@@ -1,4 +1,4 @@
-import { URIType } from "./index.js";
+import { URIType } from "./index";
 
 const path = 'http://localhost'
 const port = '1698'
