@@ -1,10 +1,3 @@
-// export interface ResponseType
-// {
-//     message: string
-//     code: number
-//     error: boolean
-// }
-
 class Response extends Error
 {
     public readonly code: number
@@ -19,8 +12,6 @@ class Response extends Error
     
     public toJSON = () => ({ message : this.message, code : this.code, error : this.error })
 }
-
-
 
 export class Errors extends Response
 {

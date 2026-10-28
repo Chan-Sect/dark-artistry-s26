@@ -13,11 +13,6 @@
   "author": "Công Tử Hào Hoa",
   "license": "ISC",
   "dependencies": {
-    "@types/cookie-parser": "^1.4.10",
-    "@types/debug": "^4.1.13",
-    "@types/express": "^5.0.6",
-    "@types/morgan": "^1.9.10",
-    "@types/node": "^26.6.5",
     "colors": "^1.4.0",
     "cookie-parser": "^1.4.7",
     "cors": "^2.8.6",
@@ -35,6 +30,11 @@
     "@types/multer": "^2.3.0",
     "nodemon": "^3.1.14",
     "tsx": "^4.23.15",
-    "typescript": "^7.0.2"
+    "typescript": "^7.0.2",
+    "@types/cookie-parser": "^1.4.10",
+    "@types/debug": "^4.1.13",
+    "@types/express": "^5.0.6",
+    "@types/morgan": "^1.9.10",
+    "@types/node": "^26.6.5"
   }
 }
