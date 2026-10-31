@@ -1,6 +1,7 @@
 import {URIType} from "./index";
+import 'dotenv/config'
 
-const path = 'https://dark-artistry-s26.onrender.com'
+const path = process.env.SERVER_DOMAIN
 const port = '31026'
 
 const output: URIType = { path, port }

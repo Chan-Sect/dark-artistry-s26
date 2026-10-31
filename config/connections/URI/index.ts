@@ -16,9 +16,8 @@ interface OutputType
     server: string[]
 }
 
-const toString = (data: URIType) =>
-    [data.path ? data.path : undefined, `http://localhost:${ data.port }`].filter(value => value !== undefined)
-    // `${ data.path }:${ data.port }`
+const toString = (data: URIType) => [data.path ? data.path : undefined, `http://localhost:${ data.port }`].filter(value => value !== undefined)
+
 const output: OutputType =
 {
     frontend: [...toString(admin), ...toString(client)],

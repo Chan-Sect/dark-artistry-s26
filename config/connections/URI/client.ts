@@ -1,9 +1,7 @@
 import {URIType} from "./index";
+import 'dotenv/config'
 
-// const path = 'http://localhost'
-// const port = '1698'
-
-const path = undefined
+const path = process.env.CLIENT_DOMAIN
 const port = '1698'
 
 const output: URIType = { path, port }
