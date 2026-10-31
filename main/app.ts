@@ -61,11 +61,11 @@ app.use(session({ secret: 'Dark Artistry', resave: false, saveUninitialized: tru
 app.use(multer({storage: multer.memoryStorage()}).single('file'))
 app.use(convert)
 
-app.use('/', indexRouter)
 app.use('/users', usersRouter)
 app.use('/count', countRouter)
 app.use('/authentication', authenticationRouter)
 app.use('/file', fileRouter)
+app.use('/', indexRouter)
 
 const onNotFound: RequestHandler = (req, _, next) =>
 {
@@ -86,6 +86,5 @@ app.use(express.static(path.join(process.cwd(), 'public')))
 
 app.use(onNotFound)
 app.use(onError)
-
 
 export default app
