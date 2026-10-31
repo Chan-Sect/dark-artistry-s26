@@ -1,6 +1,6 @@
-import { URIType } from "./index";
+import {URIType} from "./index";
 
-const path = 'http://localhost'
+const path = 'https://dark-artistry-s26.onrender.com'
 const port = '31026'
 
 const output: URIType = { path, port }

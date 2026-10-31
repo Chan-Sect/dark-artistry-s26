@@ -1,6 +1,9 @@
-import { URIType } from "./index";
+import {URIType} from "./index";
 
-const path = 'http://localhost'
+// const path = 'http://localhost'
+// const port = '1698'
+
+const path = undefined
 const port = '1698'
 
 const output: URIType = { path, port }
