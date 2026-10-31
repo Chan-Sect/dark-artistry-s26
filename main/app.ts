@@ -24,7 +24,7 @@ app.set('view engine', 'ejs')
 
 const print: RequestHandler = (req, res, next) =>
 {
-    if (!(req.method === 'OPTIONS' ||req.url.startsWith('/file') || req.url.startsWith('/image') || req.url.startsWith('/audio') || req.url.startsWith('/video') || req.url.startsWith('/bin')))
+    if (!(req.method === 'OPTIONS' || req.url.startsWith('/bin')))
         logger('dev')(req, res, next)
     else next()
 }
@@ -56,7 +56,9 @@ app.use(cookieParser())
 app.use(cors(corsOptions))
 app.use(session({ secret: 'Dark Artistry', resave: false, saveUninitialized: true, cookie: { secure: false } }))
 
-app.use(multer().any())
+// const upload = multer({ storage: multer.memoryStorage() })
+// app.use()
+app.use(multer({storage: multer.memoryStorage()}).single('file'))
 app.use(convert)
 
 app.use('/', indexRouter)

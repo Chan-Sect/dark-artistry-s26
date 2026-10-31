@@ -67,17 +67,17 @@ class File {
         try {
             const files = await bucket().find({_id: new ObjectId(req.params.id)}).toArray()
 
-            next(!files.length ? Error.NotFound : null)
-            if (!files.length) next(Error.NotFound)
+            console.log(files)
+            // next(!files.length ? Error.NotFound({ file: req.params.id }) : null)
+            if (!files.length) next(Error.NotFound({file: req.params.id}))
             else {
                 res.locals.file = files[0]
                 next()
             }
         } catch (error) {
-            next(Error.NotFound)
+            next(Error.NotFound({file: req.params.id}))
         }
     }
-
     public readonly byID = () => [exist('id'), File.fetch]
 }
 

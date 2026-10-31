@@ -1,4 +1,4 @@
-import {DataHandler, Get, upload} from "./";
+import {DataHandler, Get} from "./";
 import {Error} from "../config/connections/response";
 
 const checkExistFile: DataHandler = (req, res, next) => {
@@ -12,6 +12,6 @@ const checkExistFile: DataHandler = (req, res, next) => {
 }
 
 const GET = [...Get.File.byID()]
-const POST = [upload.single('file'), checkExistFile]
+const POST = [checkExistFile]
 
 export default {GET, POST}
