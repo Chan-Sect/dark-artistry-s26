@@ -9,6 +9,7 @@ import debug from 'debug'
 import http from 'http'
 import URL from '../config/connections/URI/server'
 import colors from 'colors'
+import 'dotenv/config'
 
 /**
  * Kết nối Database

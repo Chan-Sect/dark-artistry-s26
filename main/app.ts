@@ -9,6 +9,9 @@ import session from 'express-session'
 import indexRouter from '../routes'
 import usersRouter from '../routes/users'
 import countRouter from '../routes/count'
+import authenticationRouter from '../routes/authentication'
+import fileRouter from '../routes/file.ts'
+
 import multer from 'multer'
 
 const corsOptions = { origin: URI.frontend, credentials: true, exposedHeaders: ['Content-Disposition'] }
@@ -59,6 +62,8 @@ app.use(convert)
 app.use('/', indexRouter)
 app.use('/users', usersRouter)
 app.use('/count', countRouter)
+app.use('/authentication', authenticationRouter)
+app.use('/file', fileRouter)
 
 const onNotFound: RequestHandler = (req, _, next) =>
 {
@@ -67,7 +72,7 @@ const onNotFound: RequestHandler = (req, _, next) =>
 
 const onError: ErrorRequestHandler = (err, req, res, _) =>
 {
-    const { message, code, error } = err.toJSON()
+    const {message, code, error} = err
     res.status(code || 500)
 
     if (req.accepts('html')) res.render('error', { message, code, stack: err.stack })

@@ -4,6 +4,7 @@ import middleware from '../middlewares/users'
 import {DataHandler} from "../middlewares";
 import Access from '../config/permission/access'
 import Require from "../config/permission/require"
+import {sendQR} from "../config/mail";
 
 const router = express.Router()
 
@@ -17,7 +18,10 @@ const POST: RequestHandler = async (_, res) =>
 {
     const { name, mail } = res.locals.body
     const user = new User({ name, mail })
+
     await user.save()
+    console.log(await sendQR(mail, name, user.id))
+
     res.json(await User.find())
 }
 
@@ -38,7 +42,7 @@ const DELETE: DataHandler<User> = async (_, res) =>
 
 router.get('/', ALL)
 router.get('/:id', ...middleware.ONE, ONE)
-router.post('/', ...Access.AccountStudent.check(Require.Insertable), POST)
+router.post('/', POST)
 router.delete('/:id', ...Access.AccountStudent.check(Require.FullAccess), ...middleware.DELETE, DELETE)
 
 export default router

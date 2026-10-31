@@ -13,16 +13,21 @@
   "author": "Công Tử Hào Hoa",
   "license": "ISC",
   "dependencies": {
+    "@types/dotenv" : "^6.1.1",
+    "@types/qrcode" : "^1.5.6",
     "colors": "^1.4.0",
     "cookie-parser": "^1.4.7",
     "cors": "^2.8.6",
     "debug": "^4.4.3",
+    "dotenv" : "^18.0.9",
     "ejs": "^7.0.2",
     "express": "^5.3.0",
     "express-session": "^1.19.0",
+    "googleapis" : "^188.0.0",
     "mongodb": "^7.7.0",
     "morgan": "^1.12.1",
     "multer": "^2.5.0",
+    "qrcode" : "^1.5.4",
     "tsc-esm-fix": "^3.1.2"
   },
   "devDependencies": {

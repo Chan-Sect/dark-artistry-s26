@@ -1,16 +1,26 @@
-import {RequestHandler, Request } from "express"
+import {Request, RequestHandler} from "express"
 import {Error} from "../config/connections/response"
 import Database, {DatabaseClass} from "../database/main/index"
 import Authentication from '../database/collections/authentication'
 import User from '../database/collections/users'
+import {GridFSFile, ObjectId} from "mongodb";
+import {bucket} from "../database/main/connect.ts";
+import multer from 'multer'
 
 type FetchCookiesType = (request: Request) => Promise<Authentication | undefined>
 type FindType = (id: string) => Promise<User | undefined>
 type ExistType = (by: string) => RequestHandler
 type GetDataType = <T extends Database>(Source: DatabaseClass<T>) => DataHandler<T>
 
-export type DataHandler<T extends Database = any> = RequestHandler<{ id: string }, any, any, any, { data: T, sign: Authentication, account: User }>
+export type DataHandler<T extends Database = any> = RequestHandler<{ id: string }, any, any, any, {
+    data: T,
+    sign: Authentication,
+    account: User,
+    file: GridFSFile,
+    upload: Express.Multer.File
+}>
 
+export const upload = multer({storage: multer.memoryStorage()})
 const exist: ExistType = by => (req, _, next) =>
 {
     next(req.params[by] !== null && req.params[by] !== undefined ? null : Error.MissingFields(by))
@@ -52,6 +62,25 @@ class Data
     public readonly byID = <T extends Database>(Source: DatabaseClass<T>) => [exist('id'), Data.fetch(Source)]
 }
 
+class File {
+    private static readonly fetch: DataHandler = async (req, res, next) => {
+        try {
+            const files = await bucket().find({_id: new ObjectId(req.params.id)}).toArray()
+
+            next(!files.length ? Error.NotFound : null)
+            if (!files.length) next(Error.NotFound)
+            else {
+                res.locals.file = files[0]
+                next()
+            }
+        } catch (error) {
+            next(Error.NotFound)
+        }
+    }
+
+    public readonly byID = () => [exist('id'), File.fetch]
+}
+
 class Cookies
 {
     private static readonly fetch: FetchCookiesType = async req =>
@@ -88,4 +117,6 @@ export class Get
 {
     public static readonly Data = new Data()
     public static readonly User = new Account()
+    public static readonly File = new File()
+
 }
