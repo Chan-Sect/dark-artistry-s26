@@ -10,7 +10,8 @@ import indexRouter from '../routes'
 import usersRouter from '../routes/users'
 import countRouter from '../routes/count'
 import authenticationRouter from '../routes/authentication'
-import fileRouter from '../routes/file.ts'
+import fileRouter from '../routes/file'
+import filterRouter from '../routes/filter'
 
 import multer from 'multer'
 
@@ -65,6 +66,8 @@ app.use('/users', usersRouter)
 app.use('/count', countRouter)
 app.use('/authentication', authenticationRouter)
 app.use('/file', fileRouter)
+app.use('/filter', filterRouter)
+
 app.use('/', indexRouter)
 
 const onNotFound: RequestHandler = (req, _, next) =>
