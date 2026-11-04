@@ -23,12 +23,12 @@ class User extends Database
 
     public override toJSON()
     {
-        return { id: this.id, name: this.name, mail: this.mail }
+        return { id: this.id, name: this.name, mail: this.mail, createTime: this.createTime.getTime(), updateTime: this.updateTime.getTime() }
     }
 
-    public constructor({ _id, name, mail } : UserType)
+    public constructor({ _id, createTime, updateTime, name, mail } : UserType)
     {
-        super(_id)
+        super({ id: _id, createTime, updateTime })
         this.name = name || _id || ''
         this.mail = mail
     }

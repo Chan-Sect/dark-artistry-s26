@@ -1,4 +1,4 @@
-import Database, { DatabaseType } from '../main'
+import Database, {DatabaseType} from '../main'
 
 export interface AuthenticationType extends DatabaseType
 {
@@ -23,9 +23,9 @@ class Authentication extends Database
         return { id: this.id, user: this.user }
     }
 
-    public constructor({ _id, user } : AuthenticationType)
+    public constructor({ _id, createTime, updateTime, user } : AuthenticationType)
     {
-        super(_id)
+        super({ id: _id, createTime, updateTime })
         this.user = user
     }
 }

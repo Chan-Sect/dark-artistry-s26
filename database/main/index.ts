@@ -64,9 +64,18 @@ export interface CountType
     filter?: Record<string, unknown>
     lookup?: any[]
 }
-export interface DatabaseType
+interface TimerType
 {
-    _id?: string | undefined
+    createTime?: Date
+    updateTime?: Date
+}
+interface ConstructorType extends TimerType
+{
+    id?: string,
+}
+export interface DatabaseType extends TimerType
+{
+    _id?: string | undefined,
 }
 
 export type DatabaseClass<T extends Database> = Pick<typeof Database, "find" | "count"> & (new (data: any) => T)
@@ -77,6 +86,8 @@ abstract class Database
     protected abstract readonly collection: string
 
     public readonly id: string
+    public readonly createTime: Date
+    public readonly updateTime: Date
 
     protected abstract get data(): Record<string, unknown>
     public abstract toJSON(): unknown
@@ -99,9 +110,11 @@ abstract class Database
         return `${ this.collection }-${ tsStr }${ randomStr }`.toLowerCase()
     }
 
-    protected constructor(id: string | undefined)
+    protected constructor({ id, createTime, updateTime }: ConstructorType)
     {
         this.id = id?.toLowerCase() || this.generate(12)
+        this.updateTime = updateTime || new Date()
+        this.createTime = createTime || new Date()
     }
 
     private add = async () => await collections(this.collection).insertOne({ _id: this.id, ...this.data })
