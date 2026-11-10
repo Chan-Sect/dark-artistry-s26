@@ -85,9 +85,14 @@ abstract class Database
     protected static readonly directory: string
     protected abstract readonly collection: string
 
-    public readonly id: string
+    private readonly ID: string | undefined
     public readonly createTime: Date
     public readonly updateTime: Date
+
+    public get id()
+    {
+        return this.ID || this.generate(12)
+    }
 
     protected abstract get data(): Record<string, unknown>
     public abstract toJSON(): unknown
@@ -112,7 +117,7 @@ abstract class Database
 
     protected constructor({ id, createTime, updateTime }: ConstructorType)
     {
-        this.id = id?.toLowerCase() || this.generate(12)
+        this.ID = id?.toLowerCase()
         this.updateTime = updateTime || new Date()
         this.createTime = createTime || new Date()
     }

@@ -14,6 +14,7 @@ type GetDataType = <T extends Database>(Source: DatabaseClass<T>) => DataHandler
 
 export type DataHandler<T extends Database = any> = RequestHandler<{ id: string }, any, any, any, {
     data: T,
+    body: T,
     sign: Authentication,
     account: User,
     file: GridFSFile,

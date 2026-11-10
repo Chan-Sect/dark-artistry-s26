@@ -3,11 +3,13 @@ import oauth2Client from "./google";
 import QRCode from 'qrcode'
 
 const gmail = google.gmail({version: 'v1', auth: oauth2Client})
-const generateQR = (content: string) => QRCode.toBuffer(content, {
-    type: 'png', width: 400, margin: 2, errorCorrectionLevel: 'H', color: {
-        dark: '#075447',
-        light: '#00000000'
-    }
+const generateQR = (content: string) => QRCode.toBuffer(content,
+{
+    type: 'png',
+    width: 400,
+    margin: 2,
+    errorCorrectionLevel: 'H',
+    color: { dark: '#075447', light: '#00000000' }
 })
 
 
@@ -133,38 +135,38 @@ export const sendQR = async (to: string, name: string, code: string) => {
 `
 
 
-    const boundary = `boundary_${Date.now()}`
-    const alternative = `alternative_${Date.now()}`
+    const boundary = `boundary_${ Date.now() }`
+    const alternative = `alternative_${ Date.now() }`
 
     const mime = [
-        `From: =?UTF-8?B?${Buffer.from('Dark Artistry - Thông báo hệ thống').toString('base64')}?= <${process.env.GMAIL_USER}>`,
-        `To: =?UTF-8?B?${Buffer.from(name).toString('base64')}?= <${to}>`,
+        `From: =?UTF-8?B?${Buffer.from('Dark Artistry - Thông báo hệ thống').toString('base64')}?= <${ process.env.GMAIL_USER }>`,
+        `To: =?UTF-8?B?${Buffer.from(name).toString('base64')}?= <${ to }>`,
         `Subject: =?UTF-8?B?${Buffer.from('Quét mã QR để đăng nhập').toString('base64')}?=`,
         'MIME-Version: 1.0',
-        `Content-Type: multipart/related; boundary="${boundary}"`,
+        `Content-Type: multipart/related; boundary="${ boundary }"`,
         '',
-        `--${boundary}`,
-        `Content-Type: multipart/alternative; boundary="${alternative}"`,
+        `--${ boundary }`,
+        `Content-Type: multipart/alternative; boundary="${ alternative }"`,
         '',
-        `--${alternative}`,
+        `--${ alternative }`,
         'Content-Type: text/html; charset=UTF-8',
         'Content-Transfer-Encoding: base64',
         '',
         Buffer.from(html).toString('base64'),
-        `--${alternative}--`,
-        `--${boundary}`,
+        `--${ alternative }--`,
+        `--${ boundary }`,
         'Content-Type: image/png; name="qrcode.png"',
         'Content-Transfer-Encoding: base64',
         'Content-ID: <qrcode>',
         'Content-Disposition: inline; filename="qrcode.png"',
         '',
         png.toString('base64').match(/.{1,76}/g)?.join('\r\n') ?? '',
-        `--${boundary}--`
+        `--${ boundary }--`
     ].join('\r\n')
 
     const raw = Buffer.from(mime).toString('base64url')
 
-    const result = await gmail.users.messages.send({userId: 'me', requestBody: {raw}})
+    const result = await gmail.users.messages.send({ userId: 'me', requestBody: { raw }})
 
     return result.data
 }

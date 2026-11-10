@@ -8,7 +8,7 @@ export interface AuthenticationType extends DatabaseType
 class Authentication extends Database
 {
     protected static override readonly directory = 'authentication'
-    protected override readonly collection: string = Authentication.directory
+    protected override readonly collection: string = 'authentication'
 
     public user: string
 
