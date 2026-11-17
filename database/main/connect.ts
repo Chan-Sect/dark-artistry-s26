@@ -38,5 +38,5 @@ const output = async () => await run()
 export default output
 
 export const collection = (collectionName: string) => client.db(name).collection<Document & { _id: string }>(collectionName)
-export const bucket = () => new GridFSBucket(client.db(name), {bucketName: 'file'})
+export const bucket = () => new GridFSBucket(client.db(name), { bucketName: 'file' })
 export const stats = async () => await client.db(name).stats()

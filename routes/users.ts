@@ -2,6 +2,7 @@ import express, {RequestHandler} from 'express'
 import User from '../database/collections/users'
 import middleware from '../middlewares/users'
 import {DataHandler} from "../middlewares";
+import File from '../database/main/file'
 
 const router = express.Router()
 
@@ -17,24 +18,40 @@ const ONE: DataHandler<User> = async (_, res) =>
     res.json(user)
 }
 
-const POST: DataHandler<User> = async (_, res) =>
+
+const POST: DataHandler<User> = async (req, res) =>
 {
     const { name, mail, phone } = res.locals.body
-    const user = new User({ name, mail, phone })
+    const { file } = req
+
+    let image
+
+    if (file)
+    {
+        const storage = new File(file)
+        image = await storage.save()
+    }
+    const user = new User({ name, mail, phone, image })
 
     await user.save()
     // console.log(await sendQR(mail, name, user.id))
     res.json(user)
 }
 
-const PATCH: DataHandler<User> = async (_, res) =>
+const PATCH: DataHandler<User> = async (req, res) =>
 {
     const user = res.locals.data
     const { name, mail, phone } = res.locals.body
+    const { file } = req
 
     user.name = name
     user.mail = mail
     user.phone = phone
+    if (file)
+    {
+        const storage = new File(file)
+        user.image = await storage.save()
+    }
 
     await user.save()
 
@@ -44,6 +61,11 @@ const PATCH: DataHandler<User> = async (_, res) =>
 const DELETE: DataHandler<User> = async (_, res) =>
 {
     const user = res.locals.data
+    if (user.image)
+    {
+        const storage = new File(user.image)
+        await storage.delete()
+    }
     await user.delete()
     res.json(await User.find())
 }

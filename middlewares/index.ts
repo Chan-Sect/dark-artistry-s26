@@ -63,19 +63,22 @@ class Data
     public readonly byID = <T extends Database>(Source: DatabaseClass<T>) => [exist('id'), Data.fetch(Source)]
 }
 
-class File {
-    private static readonly fetch: DataHandler = async (req, res, next) => {
-        try {
+class File
+{
+    private static readonly fetch: DataHandler = async (req, res, next) =>
+    {
+        try
+        {
             const files = await bucket().find({_id: new ObjectId(req.params.id)}).toArray()
-
-            console.log(files)
-            // next(!files.length ? Error.NotFound({ file: req.params.id }) : null)
             if (!files.length) next(Error.NotFound({file: req.params.id}))
-            else {
+            else
+            {
                 res.locals.file = files[0]
                 next()
             }
-        } catch (error) {
+        }
+        catch (error)
+        {
             next(Error.NotFound({file: req.params.id}))
         }
     }
